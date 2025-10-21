@@ -11,6 +11,13 @@ interface ProductsProps {
   gap?: string;
 }
 
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+  }).format(price);
+};
+
 const Products = ({ products, gap }: ProductsProps) => {
   const [isLoaded, setIsloaded] = useState<boolean>(false);
   const { onAdd, cartItems } = useContext(UC);
@@ -68,9 +75,10 @@ const Products = ({ products, gap }: ProductsProps) => {
           <p> {products.name} </p>
           <div className=" flex gap-3">
             <span className=" text-sm text-lightGray line-through ">
-              ${products.oldPrice}
+              {formatPrice(products.oldPrice)}
             </span>
-            <b className=" text-zinc-900 "> ${products.price} </b>
+            {/* <b className=" text-zinc-900 "> ${products.price} </b> */}
+            <b className=" text-zinc-900 "> {formatPrice(products.price)} </b>
           </div>
         </nav>
 

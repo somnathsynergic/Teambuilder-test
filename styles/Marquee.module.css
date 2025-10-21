@@ -1,10 +1,19 @@
-.anim {
-    position: absolute;
-    will-change: transform;
-    animation: marquee 15s linear infinite ;
+/* d:\React Projects\test\Teambuilder-test\styles\Marquee.module.css */
+
+.marqueeContainer {
+  display: flex;
+  /* Ensure enough space for all items to be in one line */
+  width: fit-content;
+  white-space: nowrap; /* Prevent items from wrapping to the next line */
+  animation: marquee 30s linear infinite; /* Adjust duration as needed for speed */
 }
 
-.anim:hover {
-    animation-play-state: paused;
-    
+.marqueeContainer > * {
+  flex-shrink: 0; /* Prevent individual product items from shrinking */
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  /* Move by the width of one full set of duplicated products */
+  100% { transform: translateX(-50%); }
 }
